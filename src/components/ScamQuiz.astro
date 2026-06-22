@@ -1,0 +1,316 @@
+---
+---
+
+<section id="quiz" class="py-16 md:py-24 bg-canvas">
+  <div class="w-full max-w-[1400px] mx-auto px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      <!-- Section header -->
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-canvas-soft border border-hairline rounded-full text-[12px] font-mono text-body mb-4">
+          Scam Logic Quiz
+        </div>
+        <h2 class="text-[24px] md:text-[32px] font-semibold leading-[40px] tracking-[-1.28px] text-ink mb-4">
+          Verify your citation in 30 seconds
+        </h2>
+        <p class="text-[16px] text-body leading-[24px]">
+          Answer these quick questions to determine if your traffic ticket or toll notice is legitimate.
+        </p>
+      </div>
+
+      <!-- Quiz Card -->
+      <div id="quiz-container" class="bg-canvas border border-hairline rounded-xl p-6 md:p-8 shadow-[0px_2px_2px_#0000000a,0px_8px_8px_-8px_#0000000a]">
+        <!-- Progress bar -->
+        <div class="flex items-center gap-3 mb-8">
+          <div class="flex-1 h-1 bg-canvas-soft-2 rounded-full overflow-hidden">
+            <div id="quiz-progress" class="h-full bg-primary rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <span id="quiz-step-label" class="text-[12px] font-mono text-mute">0/5</span>
+        </div>
+
+        <!-- Questions container -->
+        <div id="quiz-questions"></div>
+
+        <!-- Result container (hidden by default) -->
+        <div id="quiz-result" class="hidden"></div>
+
+        <!-- Navigation -->
+        <div class="flex items-center justify-between mt-8 pt-6 border-t border-hairline">
+          <button id="quiz-prev" class="inline-flex items-center px-4 py-2 text-[14px] font-medium text-body hover:text-ink transition-colors rounded-full hover:bg-canvas-soft-2 disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+            <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Back
+          </button>
+          <button id="quiz-next" class="inline-flex items-center px-5 py-2 bg-primary text-on-primary text-[14px] font-medium rounded-full hover:bg-ink/90 transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+            Next
+            <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const questions = [
+    {
+      id: 1,
+      question: "How did you receive this traffic ticket or toll notice?",
+      options: [
+        { text: "Via text message", scamScore: 3, isScam: true },
+        { text: "Via email", scamScore: 2, isScam: true },
+        { text: "Official mail from DMV", scamScore: 0, isScam: false },
+        { text: "In person from an officer", scamScore: 0, isScam: false }
+      ]
+    },
+    {
+      id: 2,
+      question: "Does the notice contain a QR code to scan for payment?",
+      options: [
+        { text: "Yes, it has a QR code", scamScore: 3, isScam: true },
+        { text: "No QR code", scamScore: 0, isScam: false }
+      ]
+    },
+    {
+      id: 3,
+      question: "Does it ask for payment via gift cards, cryptocurrency, or wire transfer?",
+      options: [
+        { text: "Yes, it asks for unusual payment", scamScore: 4, isScam: true },
+        { text: "No, standard payment methods only", scamScore: 0, isScam: false }
+      ]
+    },
+    {
+      id: 4,
+      question: "Does the message create urgency with threats (suspension, arrest, fines)?",
+      options: [
+        { text: "Yes, it threatens immediate action", scamScore: 3, isScam: true },
+        { text: "No, it's just a standard notice", scamScore: 0, isScam: false }
+      ]
+    },
+    {
+      id: 5,
+      question: "Can you verify the sender matches an official government domain (.gov)?",
+      options: [
+        { text: "No, it's from a regular domain or number", scamScore: 4, isScam: true },
+        { text: "Yes, it's from a .gov domain", scamScore: 0, isScam: false },
+        { text: "Not sure / didn't check", scamScore: 1, isScam: false }
+      ]
+    }
+  ];
+
+  let currentQuestion = 0;
+  let answers: number[] = [];
+  let scamScore = 0;
+
+  const progressEl = document.getElementById('quiz-progress');
+  const stepLabelEl = document.getElementById('quiz-step-label');
+  const questionsContainer = document.getElementById('quiz-questions');
+  const resultContainer = document.getElementById('quiz-result');
+  const prevBtn = document.getElementById('quiz-prev') as HTMLButtonElement;
+  const nextBtn = document.getElementById('quiz-next') as HTMLButtonElement;
+
+  function renderQuestion() {
+    if (!questionsContainer) return;
+    
+    const q = questions[currentQuestion];
+    questionsContainer.innerHTML = `
+      <div class="mb-6">
+        <p class="text-[12px] font-mono text-mute mb-2">Question ${currentQuestion + 1} of ${questions.length}</p>
+        <h3 class="text-[18px] md:text-[20px] font-medium text-ink leading-[28px]">${q.question}</h3>
+      </div>
+      <div class="space-y-3">
+        ${q.options.map((opt, i) => `
+          <button class="quiz-option w-full text-left p-4 border border-hairline rounded-lg hover:border-hairline-strong hover:bg-canvas-soft-2 transition-all ${answers[currentQuestion] === i ? 'border-primary bg-canvas-soft-2' : ''}" data-index="${i}">
+            <div class="flex items-center gap-3">
+              <div class="w-5 h-5 rounded-full border-2 ${answers[currentQuestion] === i ? 'border-primary bg-primary' : 'border-hairline-strong'} flex items-center justify-center flex-shrink-0">
+                ${answers[currentQuestion] === i ? '<svg class="w-3 h-3 text-on-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>' : ''}
+              </div>
+              <span class="text-[15px] text-ink">${opt.text}</span>
+            </div>
+          </button>
+        `).join('')}
+      </div>
+    `;
+
+    // Add click handlers
+    document.querySelectorAll('.quiz-option').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const index = parseInt(btn.getAttribute('data-index') || '0');
+        answers[currentQuestion] = index;
+        renderQuestion();
+        updateNav();
+      });
+    });
+
+    updateProgress();
+    updateNav();
+  }
+
+  function updateProgress() {
+    if (progressEl) {
+      const progress = ((currentQuestion + 1) / questions.length) * 100;
+      progressEl.style.width = `${progress}%`;
+    }
+    if (stepLabelEl) {
+      stepLabelEl.textContent = `${currentQuestion + 1}/${questions.length}`;
+    }
+  }
+
+  function updateNav() {
+    if (prevBtn) {
+      prevBtn.disabled = currentQuestion === 0;
+    }
+    if (nextBtn) {
+      const isLast = currentQuestion === questions.length - 1;
+      nextBtn.textContent = isLast ? 'Get Results' : 'Next';
+      nextBtn.innerHTML = isLast 
+        ? 'Get Results <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>'
+        : 'Next <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      nextBtn.disabled = answers[currentQuestion] === undefined;
+    }
+  }
+
+  function calculateResult() {
+    scamScore = 0;
+    answers.forEach((answerIndex, questionIndex) => {
+      const option = questions[questionIndex].options[answerIndex];
+      if (option) {
+        scamScore += option.scamScore;
+      }
+    });
+    return scamScore;
+  }
+
+  function showResult() {
+    const score = calculateResult();
+    const isScam = score >= 3;
+    
+    if (questionsContainer) questionsContainer.classList.add('hidden');
+    if (resultContainer) {
+      resultContainer.classList.remove('hidden');
+      
+      if (isScam) {
+        resultContainer.innerHTML = `
+          <div class="text-center py-4">
+            <div class="w-16 h-16 bg-error-soft rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-error" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <h3 class="text-[20px] md:text-[24px] font-semibold text-error mb-3">Likely a Scam</h3>
+            <p class="text-[15px] text-body mb-6 max-w-md mx-auto">
+              Based on your answers, this appears to be a phishing scam. Do not click any links or provide personal information.
+            </p>
+            <div class="bg-error-soft border border-error/20 rounded-lg p-4 max-w-md mx-auto mb-6">
+              <p class="text-[14px] text-error font-medium mb-2">Immediate Steps:</p>
+              <ul class="text-[14px] text-body text-left space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-error mt-0.5">•</span>
+                  Do not click any links in the message
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-error mt-0.5">•</span>
+                  Do not reply or provide any information
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-error mt-0.5">•</span>
+                  Forward the text to 7726 (SPAM)
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-error mt-0.5">•</span>
+                  Report at ReportFraud.ftc.gov
+                </li>
+              </ul>
+            </div>
+            <a href="/report" class="inline-flex items-center px-5 py-2 bg-primary text-on-primary text-[14px] font-medium rounded-full hover:bg-ink/90 transition-all">
+              View Full Report Guide
+              <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        `;
+      } else {
+        resultContainer.innerHTML = `
+          <div class="text-center py-4">
+            <div class="w-16 h-16 bg-link-bg-soft rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-[20px] md:text-[24px] font-semibold text-ink mb-3">Appears Legitimate</h3>
+            <p class="text-[15px] text-body mb-6 max-w-md mx-auto">
+              Based on your answers, this appears to be a legitimate notice. However, always verify directly with official sources.
+            </p>
+            <div class="bg-canvas-soft border border-hairline rounded-lg p-4 max-w-md mx-auto mb-6">
+              <p class="text-[14px] text-ink font-medium mb-2">Recommended Next Steps:</p>
+              <ul class="text-[14px] text-body text-left space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-link mt-0.5">•</span>
+                  Verify on your state's official DMV website
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-link mt-0.5">•</span>
+                  Check the ticket number directly with the court
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-link mt-0.5">•</span>
+                  Never pay through links in emails or texts
+                </li>
+              </ul>
+            </div>
+            <a href="/directory" class="inline-flex items-center px-5 py-2 bg-primary text-on-primary text-[14px] font-medium rounded-full hover:bg-ink/90 transition-all">
+              View Official Gov Sites
+              <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        `;
+      }
+    }
+
+    // Update nav buttons
+    if (prevBtn) prevBtn.classList.add('hidden');
+    if (nextBtn) {
+      nextBtn.textContent = 'Start Over';
+      nextBtn.innerHTML = 'Start Over <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>';
+      nextBtn.disabled = false;
+      nextBtn.onclick = resetQuiz;
+    }
+  }
+
+  function resetQuiz() {
+    currentQuestion = 0;
+    answers = [];
+    scamScore = 0;
+    
+    if (questionsContainer) questionsContainer.classList.remove('hidden');
+    if (resultContainer) resultContainer.classList.add('hidden');
+    if (prevBtn) prevBtn.classList.remove('hidden');
+    
+    renderQuestion();
+  }
+
+  // Event listeners
+  prevBtn?.addEventListener('click', () => {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      renderQuestion();
+    }
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    if (currentQuestion === questions.length - 1) {
+      showResult();
+    } else if (answers[currentQuestion] !== undefined) {
+      currentQuestion++;
+      renderQuestion();
+    }
+  });
+
+  // Initialize
+  renderQuestion();
+</script>

@@ -1,0 +1,188 @@
+---
+const states = [
+  { name: "Alabama", url: "https://aldriverslicensing.com", dmv: "Alabama Law Enforcement Agency" },
+  { name: "Alaska", url: "https://doa.alaska.gov/dmv", dmv: "Alaska Division of Motor Vehicles" },
+  { name: "Arizona", url: "https://azmvdnow.gov", dmv: "Arizona Motor Vehicle Division" },
+  { name: "Arkansas", url: "https://www.dfa.arkansas.gov offices", dmv: "Arkansas DFA" },
+  { name: "California", url: "https://www.dmv.ca.gov", dmv: "California DMV" },
+  { name: "Colorado", url: "https://dmv.colorado.gov", dmv: "Colorado DMV" },
+  { name: "Connecticut", url: "https://portal.ct.gov/dmv", dmv: "Connecticut DMV" },
+  { name: "Delaware", url: "https://www.dmv.de.gov", dmv: "Delaware DMV" },
+  { name: "Florida", url: "https://www.flhsmv.gov", dmv: "Florida Highway Safety" },
+  { name: "Georgia", url: "https://dds.georgia.gov", dmv: "Georgia DDS" },
+  { name: "Hawaii", url: "https://www.hawaiiansafety.org", dmv: "Hawaii DOT" },
+  { name: "Idaho", url: "https://www.transportation.idaho.gov", dmv: "Idaho Transportation Dept" },
+  { name: "Illinois", url: "https://www.ilsos.gov", dmv: "Illinois Secretary of State" },
+  { name: "Indiana", url: "https://www.in.gov/bmv", dmv: "Indiana BMV" },
+  { name: "Iowa", url: "https://iowadot.gov/motor-vehicles", dmv: "Iowa DOT" },
+  { name: "Kansas", url: "https://www.kansasgoesonline.gov", dmv: "Kansas DMV" },
+  { name: "Kentucky", url: "https://drive.ky.gov", dmv: "Kentucky DMV" },
+  { name: "Louisiana", url: "https://www.dmv.la.gov", dmv: "Louisiana DMV" },
+  { name: "Maine", url: "https://www.maine.gov/sos/bmv", dmv: "Maine BMV" },
+  { name: "Maryland", url: "https://www.marylandmva.org", dmv: "Maryland MVA" },
+  { name: "Massachusetts", url: "https://www.mass.gov/rmv", dmv: "Massachusetts RMV" },
+  { name: "Michigan", url: "https://www.michigan.gov/sos", dmv: "Michigan SOS" },
+  { name: "Minnesota", url: "https://mn.gov/dps/dvs", dmv: "Minnesota DVS" },
+  { name: "Mississippi", url: "https://www.dps.tn.gov/drivers", dmv: "Mississippi DMV" },
+  { name: "Missouri", url: "https://dor.mo.gov/motor-vehicles", dmv: "Missouri DMV" },
+  { name: "Montana", url: "https://mvd.dpi.state.mt.us", dmv: "Montana MVD" },
+  { name: "Nebraska", url: "https://dmv.nebraska.gov", dmv: "Nebraska DMV" },
+  { name: "Nevada", url: "https://www.dmvnv.com", dmv: "Nevada DMV" },
+  { name: "New Hampshire", url: "https://www.nh.gov/safety/license", dmv: "NH DMV" },
+  { name: "New Jersey", url: "https://www.state.nj.us/mvc", dmv: "New Jersey MVC" },
+  { name: "New Mexico", url: "https://www.mvd.newmexico.gov", dmv: "New Mexico MVD" },
+  { name: "New York", url: "https://dmv.ny.gov", dmv: "New York DMV" },
+  { name: "North Carolina", url: "https://www.ncdot.gov/dmv", dmv: "North Carolina DMV" },
+  { name: "North Dakota", url: "https://www.dot.nd.gov/dotnet1/drivers", dmv: "North Dakota DOT" },
+  { name: "Ohio", url: "https://www.bmv.ohio.gov", dmv: "Ohio BMV" },
+  { name: "Oklahoma", url: "https://www.ok.gov/dps/drivers", dmv: "Oklahoma DPS" },
+  { name: "Oregon", url: "https://www.oregon.gov/odot/dmv", dmv: "Oregon DMV" },
+  { name: "Pennsylvania", url: "https://www.dmv.pa.gov", dmv: "Pennsylvania DMV" },
+  { name: "Rhode Island", url: "https://www.ripvregistration.com", dmv: "Rhode Island DMV" },
+  { name: "South Carolina", url: "https://www.scdmvonline.com", dmv: "South Carolina DMV" },
+  { name: "South Dakota", url: "https://dps.sd.gov/driver-licensing", dmv: "South Dakota DPS" },
+  { name: "Tennessee", url: "https://www.tn.gov/safety/driver-license.html", dmv: "Tennessee DOS" },
+  { name: "Texas", url: "https://www.txdps.state.tx.us", dmv: "Texas DPS" },
+  { name: "Utah", url: "https://www.utah.gov/apps/dl/", dmv: "Utah DMV" },
+  { name: "Vermont", url: "https://dmv.vermont.gov", dmv: "Vermont DMV" },
+  { name: "Virginia", url: "https://www.dmv.virginia.gov", dmv: "Virginia DMV" },
+  { name: "Washington", url: "https://www.dol.wa.gov", dmv: "Washington DOL" },
+  { name: "West Virginia", url: "https://transportation.wv.gov/DMV", dmv: "West Virginia DMV" },
+  { name: "Wisconsin", url: "https://wisconsindot.gov/Pages/dmv/dmv-home.aspx", dmv: "Wisconsin DMV" },
+  { name: "Wyoming", url: "https://www.dot.state.wy.us", dmv: "Wyoming DOT" },
+];
+
+const federalResources = [
+  { name: "Federal Trade Commission", url: "https://reportfraud.ftc.gov", description: "Report fraud and scams" },
+  { name: "FBI Internet Crime Complaint Center", url: "https://www.ic3.gov", description: "Report cybercrime" },
+  { name: "US Postal Inspection Service", url: "https://www.uspis.gov", description: "Report mail fraud" },
+  { name: "National Highway Traffic Safety Admin", url: "https://www.nhtsa.gov", description: "Vehicle safety info" },
+];
+---
+
+<section id="directory" class="py-16 md:py-24 bg-canvas-soft">
+  <div class="w-full max-w-[1400px] mx-auto px-4 sm:px-6">
+      <!-- Section header -->
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-canvas border border-hairline rounded-full text-[12px] font-mono text-body mb-4">
+          Safe .Gov Directory
+        </div>
+        <h2 class="text-[24px] md:text-[32px] font-semibold leading-[40px] tracking-[-1.28px] text-ink mb-4">
+          Official government resources
+        </h2>
+        <p class="text-[16px] text-body leading-[24px] max-w-2xl mx-auto">
+          Verify your ticket directly through official .gov websites. Never use links from suspicious messages.
+        </p>
+      </div>
+
+      <!-- Federal resources -->
+      <div class="mb-10">
+        <h3 class="text-[14px] font-mono text-mute uppercase tracking-wider mb-4">Federal Resources</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {federalResources.map((resource) => (
+            <a 
+              href={resource.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center justify-between p-4 bg-canvas border border-hairline rounded-lg hover:border-hairline-strong hover:shadow-[0px_2px_2px_#0000000a,0px_8px_8px_-8px_#0000000a] transition-all group"
+            >
+              <div>
+                <p class="text-[15px] font-medium text-ink group-hover:text-link transition-colors">{resource.name}</p>
+                <p class="text-[13px] text-body mt-0.5">{resource.description}</p>
+              </div>
+              <svg class="w-4 h-4 text-mute group-hover:text-link transition-colors flex-shrink-0 ml-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- State directory -->
+      <div>
+        <h3 class="text-[14px] font-mono text-mute uppercase tracking-wider mb-4">State DMV / MVA Websites</h3>
+        <div class="bg-canvas border border-hairline rounded-xl overflow-hidden shadow-[0px_2px_2px_#0000000a,0px_8px_8px_-8px_#0000000a]">
+          <!-- Search/Filter -->
+          <div class="p-4 border-b border-hairline">
+            <div class="relative">
+              <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input 
+                type="text" 
+                id="state-search" 
+                placeholder="Search your state..." 
+                class="w-full pl-10 pr-4 py-2.5 bg-canvas-soft border border-hairline rounded-lg text-[14px] text-ink placeholder:text-mute focus:outline-none focus:border-hairline-strong focus:ring-1 focus:ring-hairline-strong"
+              />
+            </div>
+          </div>
+
+          <!-- State list -->
+          <div id="state-list" class="max-h-[400px] overflow-y-auto">
+            {states.map((state) => (
+              <a 
+                href={state.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="state-item flex items-center justify-between px-4 py-3 border-b border-hairline last:border-b-0 hover:bg-canvas-soft-2 transition-colors group"
+                data-state={state.name.toLowerCase()}
+              >
+                <div>
+                  <p class="text-[14px] font-medium text-ink group-hover:text-link transition-colors">{state.name}</p>
+                  <p class="text-[12px] text-body">{state.dmv}</p>
+                </div>
+                <svg class="w-4 h-4 text-mute group-hover:text-link transition-colors flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            ))}
+          </div>
+
+          <!-- Empty state -->
+          <div id="state-empty" class="hidden p-8 text-center">
+            <p class="text-[14px] text-body">No states found matching your search.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warning -->
+      <div class="mt-6 p-4 bg-warning-soft border border-warning/20 rounded-lg">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-warning flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <div>
+            <p class="text-[14px] font-medium text-warning-deep mb-1">Important Reminder</p>
+            <p class="text-[13px] text-body">
+              Official DMV websites will <strong>never</strong> ask you to pay traffic tickets via text message links, QR codes, gift cards, or cryptocurrency. Always navigate directly to these sites—never click links from emails or texts.
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<script>
+  const searchInput = document.getElementById('state-search') as HTMLInputElement;
+  const stateList = document.getElementById('state-list');
+  const stateEmpty = document.getElementById('state-empty');
+
+  searchInput?.addEventListener('input', (e) => {
+    const target = e.target as HTMLInputElement;
+    const query = target.value.toLowerCase().trim();
+    
+    const items = stateList?.querySelectorAll('.state-item');
+    let visibleCount = 0;
+
+    items?.forEach((item) => {
+      const stateName = item.getAttribute('data-state') || '';
+      const matches = stateName.includes(query);
+      (item as HTMLElement).style.display = matches ? 'flex' : 'none';
+      if (matches) visibleCount++;
+    });
+
+    if (stateEmpty) {
+      stateEmpty.classList.toggle('hidden', visibleCount > 0);
+    }
+  });
+</script>
