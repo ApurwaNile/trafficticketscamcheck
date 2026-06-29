@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Colors from DESIGN.md */
   --color-primary: #171717;
@@ -67,6 +69,7 @@ html, body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Ensure images and media don't overflow */
@@ -90,4 +93,31 @@ img, svg, video, canvas {
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* Dark mode — Vercel design system colors */
+html.dark {
+  --color-primary: #ededed;
+  --color-on-primary: #000000;
+  --color-ink: #ededed;
+  --color-body: #a1a1a1;
+  --color-mute: #666666;
+  --color-hairline: #333333;
+  --color-hairline-strong: #555555;
+  --color-canvas: #000000;
+  --color-canvas-soft: #0a0a0a;
+  --color-canvas-soft-2: #111111;
+  --color-link: #3291ff;
+  --color-link-deep: #5ba7ff;
+  --color-link-bg-soft: #0a1929;
+  --color-success: #3291ff;
+  --color-error: #ee0000;
+  --color-error-soft: #2d0f0f;
+  --color-error-deep: #ff4444;
+  --color-warning: #f5a623;
+  --color-warning-soft: #2d1f0a;
+  --color-warning-deep: #f5a623;
+  --color-cyan: #50e3c2;
+  --color-cyan-soft: #0a2d22;
+  --color-cyan-deep: #50e3c2;
 }
