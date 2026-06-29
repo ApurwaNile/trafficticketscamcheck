@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Contact Us | ScamCheck" description="Contact TrafficTicketScamCheck.com. Report new scam patterns, ask questions, or suggest improvements to our free scam verification tool.">
+  <Nav />
+  <main class="w-full flex flex-col">
+    <section class="w-full py-16 md:py-24">
+      <div class="max-w-[800px] mx-auto px-4 sm:px-6">
+        <h1 class="text-display-md md:text-display-lg font-semibold text-ink mb-4">Contact Us</h1>
+        <p class="text-body text-mute mb-8">We'd love to hear from you</p>
+
+        <a href="mailto:trafficticketscamcheck@gmail.com" class="flex items-center gap-4 p-5 rounded-xl border border-hairline bg-canvas hover:bg-canvas-soft transition-colors group mb-10">
+          <div class="w-12 h-12 rounded-lg bg-canvas-soft-2 flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-body group-hover:text-ink transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <p class="text-[14px] font-medium text-ink group-hover:text-link transition-colors break-all">trafficticketscamcheck@gmail.com</p>
+            <p class="text-[13px] text-body">Send your scam reports, feedback, and questions directly to this email</p>
+          </div>
+          <svg class="w-5 h-5 text-mute group-hover:text-link transition-colors ml-auto shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+
+        <div class="prose space-y-8">
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Report a Scam</h2>
+            <p class="text-body text-body leading-relaxed">
+              If you've received a suspicious traffic ticket or toll notice text/email, we want to know about it. Reporting scam patterns helps us keep our tools up to date and protects others in your community.
+            </p>
+            <p class="text-body text-body leading-relaxed mt-3">
+              When reporting, please include:
+            </p>
+            <ul class="list-disc list-inside text-body text-body leading-relaxed mt-2 space-y-1">
+              <li>The type of message (text, email, letter)</li>
+              <li>What agency or entity it claims to be from</li>
+              <li>Any URLs or QR codes included</li>
+              <li>The phone number or email it came from (if applicable)</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Suggest Improvements</h2>
+            <p class="text-body text-body leading-relaxed">
+              Have an idea to make ScamCheck better? Found incorrect information in our government directory? Want us to cover a new scam type? Let us know — community feedback directly shapes how this tool evolves.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Official Reporting Channels</h2>
+            <p class="text-body text-body leading-relaxed">
+              For official scam reports, please also contact these government agencies directly:
+            </p>
+            <div class="mt-4 space-y-3">
+              <a href="https://reportfraud.ftc.gov" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-canvas hover:bg-canvas-soft transition-colors group">
+                <div class="w-10 h-10 rounded-lg bg-canvas-soft-2 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-body group-hover:text-ink transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-[14px] font-medium text-ink">FTC Report Fraud</p>
+                  <p class="text-[13px] text-body">reportfraud.ftc.gov</p>
+                </div>
+                <svg class="w-4 h-4 text-mute ml-auto shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+
+              <a href="https://www.ic3.gov" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-canvas hover:bg-canvas-soft transition-colors group">
+                <div class="w-10 h-10 rounded-lg bg-canvas-soft-2 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-body group-hover:text-ink transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 21h18M3 7v1a3 3 0 006 0V7m0 1a3 3 0 006 0V7m0 1a3 3 0 006 0V7H3l2-4h14l2 4M4 21V10.87M20 21V10.87" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-[14px] font-medium text-ink">FBI IC3</p>
+                  <p class="text-[13px] text-body">Internet Crime Complaint Center</p>
+                </div>
+                <svg class="w-4 h-4 text-mute ml-auto shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+
+              <a href="https://consumer.ftc.gov/scams" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-canvas hover:bg-canvas-soft transition-colors group">
+                <div class="w-10 h-10 rounded-lg bg-canvas-soft-2 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-body group-hover:text-ink transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-[14px] font-medium text-ink">FTC Scam Alerts</p>
+                  <p class="text-[13px] text-body">consumer.ftc.gov/scams</p>
+                </div>
+                <svg class="w-4 h-4 text-mute ml-auto shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Response Time</h2>
+            <p class="text-body text-body leading-relaxed">
+              ScamCheck is maintained by a small team. We read every message and do our best to respond within a few days. For urgent matters, we recommend contacting the government agencies listed above directly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

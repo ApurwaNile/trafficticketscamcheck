@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About Us | ScamCheck" description="Learn about TrafficTicketScamCheck.com — a free, privacy-first tool to help Americans verify traffic tickets and toll notices against scams.">
+  <Nav />
+  <main class="w-full flex flex-col">
+    <section class="w-full py-16 md:py-24">
+      <div class="max-w-[800px] mx-auto px-4 sm:px-6">
+        <h1 class="text-display-md md:text-display-lg font-semibold text-ink mb-4">About ScamCheck</h1>
+        <p class="text-body text-mute mb-8">Helping Americans fight traffic ticket scams since 2026</p>
+
+        <div class="prose space-y-8">
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Our Mission</h2>
+            <p class="text-body text-body leading-relaxed">
+              Traffic ticket and toll notice scams have exploded across the United States. Millions of Americans receive fraudulent text messages and emails every year claiming unpaid traffic fines, toll violations, or DMV issues — complete with fake QR codes and threatening language. ScamCheck exists to help you cut through the noise and determine if that message is real or a scam.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">What We Offer</h2>
+            <ul class="list-disc list-inside text-body text-body leading-relaxed space-y-2">
+              <li><strong class="text-ink">Scam Logic Quiz</strong> — A 5-question assessment that analyzes your situation against known scam patterns to give you a clear verdict.</li>
+              <li><strong class="text-ink">Government Directory</strong> — A verified directory of official .gov websites for every state, so you can always find the real source.</li>
+              <li><strong class="text-ink">Toll Fraud Alerts</strong> — Up-to-date information about SunPass, E-ZPass, and other toll-related scam campaigns.</li>
+              <li><strong class="text-ink">Report Resources</strong> — Direct links to FTC, FBI IC3, and state attorney general offices for reporting scams.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Privacy First</h2>
+            <p class="text-body text-body leading-relaxed">
+              Your privacy is not a feature — it's the foundation. ScamCheck is built as a fully static website. There are no servers collecting your data, no analytics tracking your behavior, and no accounts required. The quiz runs entirely in your browser, and no information ever leaves your device.
+            </p>
+            <p class="text-body text-body leading-relaxed mt-3">
+              We believe that a tool designed to protect you from scams should never itself be a source of privacy concern.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">100% Free</h2>
+            <p class="text-body text-body leading-relaxed">
+              ScamCheck will always be free to use. No subscriptions, no premium tiers, no hidden fees. We believe everyone deserves access to tools that help protect them from fraud, regardless of their financial situation.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Open & Transparent</h2>
+            <p class="text-body text-body leading-relaxed">
+              We believe in transparency. Our site is built with modern web technologies and designed to be fast, accessible, and reliable. We link directly to official government sources so you can always verify information independently.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Disclaimer</h2>
+            <p class="text-body text-body leading-relaxed">
+              ScamCheck provides educational information only. It is not a substitute for professional legal or financial advice. Always verify information with official government sources and consult qualified professionals when needed.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Get in Touch</h2>
+            <p class="text-body text-body leading-relaxed">
+              Have questions, suggestions, or want to report a new scam pattern? Visit our <a href="/contact" class="text-link hover:text-link-hover underline underline-offset-2 transition-colors">Contact Us</a> page. We'd love to hear from you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

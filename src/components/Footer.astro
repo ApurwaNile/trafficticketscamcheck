@@ -63,10 +63,10 @@
       <div>
         <p class="text-[12px] font-mono text-mute uppercase tracking-wider mb-4">About</p>
         <ul class="space-y-2">
-          <li><span class="text-[14px] text-body">100% free to use</span></li>
-          <li><span class="text-[14px] text-body">No data collected</span></li>
-          <li><span class="text-[14px] text-body">No account required</span></li>
-          <li><span class="text-[14px] text-body">Static & fast</span></li>
+          <li><a href="/about" class="text-[14px] text-body hover:text-ink transition-colors">About Us</a></li>
+          <li><a href="/contact" class="text-[14px] text-body hover:text-ink transition-colors">Contact Us</a></li>
+          <li><a href="/privacy" class="text-[14px] text-body hover:text-ink transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms" class="text-[14px] text-body hover:text-ink transition-colors">Terms & Conditions</a></li>
         </ul>
       </div>
     </div>
@@ -76,9 +76,13 @@
       <p class="text-[13px] text-body">
         &copy; {new Date().getFullYear()} TrafficTicketScamCheck.com. All rights reserved.
       </p>
-      <p class="text-[12px] text-mute">
-        This tool provides educational information only. Always verify with official government sources.
-      </p>
+      <div class="flex items-center gap-4">
+        <a href="/privacy" class="text-[13px] text-body hover:text-ink transition-colors">Privacy</a>
+        <a href="/terms" class="text-[13px] text-body hover:text-ink transition-colors">Terms</a>
+        <span class="text-[12px] text-mute">
+          This tool provides educational information only. Always verify with official government sources.
+        </span>
+      </div>
     </div>
   </div>
 </footer>

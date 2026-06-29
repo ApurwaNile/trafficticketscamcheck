@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Privacy Policy | ScamCheck" description="Privacy Policy for TrafficTicketScamCheck.com. Learn how we protect your privacy — no data collected, no tracking, fully static site.">
+  <Nav />
+  <main class="w-full flex flex-col">
+    <section class="w-full py-16 md:py-24">
+      <div class="max-w-[800px] mx-auto px-4 sm:px-6">
+        <h1 class="text-display-md md:text-display-lg font-semibold text-ink mb-4">Privacy Policy</h1>
+        <p class="text-body text-mute mb-8">Last updated: June 29, 2026</p>
+
+        <div class="prose space-y-8">
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Overview</h2>
+            <p class="text-body text-body leading-relaxed">
+              TrafficTicketScamCheck.com ("ScamCheck") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our website and tools.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">No Data Collection</h2>
+            <p class="text-body text-body leading-relaxed">
+              ScamCheck is a fully static website. We do not collect, store, process, or transmit any personal data. The Scam Logic Quiz runs entirely in your browser — no information you enter is sent to any server.
+            </p>
+            <ul class="list-disc list-inside text-body text-body leading-relaxed mt-3 space-y-1">
+              <li>No cookies are set or tracked</li>
+              <li>No analytics or tracking scripts are used</li>
+              <li>No forms submit data to a server</li>
+              <li>No accounts or logins are required</li>
+              <li>No third-party tracking pixels are present</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Static Hosting</h2>
+            <p class="text-body text-body leading-relaxed">
+              This website is hosted as a static site. Your browser downloads HTML, CSS, and JavaScript files directly. No server-side processing occurs, and no request logs containing your personal information are retained by our hosting infrastructure beyond standard CDN operational needs.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">External Links</h2>
+            <p class="text-body text-body leading-relaxed">
+              Our site contains links to external government websites (e.g., .gov directories, FTC, FBI IC3). These sites have their own privacy policies. We encourage you to review the privacy policy of any external site you visit. We are not responsible for the practices of third-party websites.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Browser Storage</h2>
+            <p class="text-body text-body leading-relaxed">
+              We use <code class="text-[13px] font-mono bg-canvas-soft-2 px-1.5 py-0.5 rounded">localStorage</code> solely to remember your dark mode preference. This data never leaves your device and is never transmitted to any server.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Changes to This Policy</h2>
+            <p class="text-body text-body leading-relaxed">
+              We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last updated" date. Continued use of the site after changes constitutes acceptance of the revised policy.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-md font-semibold text-ink mb-3">Contact</h2>
+            <p class="text-body text-body leading-relaxed">
+              If you have questions about this Privacy Policy, please visit our <a href="/contact" class="text-link hover:text-link-hover underline underline-offset-2 transition-colors">Contact Us</a> page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
