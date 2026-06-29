@@ -42,6 +42,7 @@ const {
     <meta name="twitter:image" content="https://trafficticketscamcheck.com/og-image.png" />
     <meta name="twitter:image:alt" content="US Traffic Ticket Scam Checker — Verify if your citation or toll notice is real" />
     <title>{title}</title>
+    <slot name="head" />
     <script is:inline>
       (function() {
         const stored = localStorage.getItem('dark-mode');
